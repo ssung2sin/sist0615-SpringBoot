@@ -1,0 +1,13 @@
+package boot.mvc.tea;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringBootQuizJpa5Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootQuizJpa5Application.class, args);
+	}
+
+}

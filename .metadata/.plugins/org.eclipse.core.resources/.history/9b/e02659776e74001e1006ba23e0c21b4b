@@ -1,0 +1,46 @@
+package boot.data.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import boot.data.dto.MemberDto;
+import boot.data.service.MemberService;
+
+@Controller
+public class MemberController {
+	
+	@Autowired
+	MemberService service;
+	
+	@GetMapping("/member/myinfo")
+	public String info() {
+		return "/member/myinfo";
+	}
+	
+	@GetMapping("/member/list")
+	public String listForm(Model model) {
+		List<MemberDto> list=service.getAllMembers();
+		
+		model.addAttribute("list", list);
+		model.addAttribute("totalCount", list.size());
+		return "/member/memberList";
+	}
+	
+	@GetMapping("member/form")
+	public String addForm() {
+		
+		return "/member/addForm";
+	}
+	
+	@ResponseBody
+	@GetMapping("/member/check")
+	public boolean check(Map<String, String>map) {
+		
+	}
+}

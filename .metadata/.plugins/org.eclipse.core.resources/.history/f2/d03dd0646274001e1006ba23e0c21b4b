@@ -1,0 +1,18 @@
+package boot.data.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import boot.data.service.MemberService;
+
+@Controller
+public class MemberController {
+	
+	@Autowired
+	MemberService service;
+	
+	@GetMapping("member/myinfo")
+	public String form() {
+		return "member/myinfo";
+	}
+}

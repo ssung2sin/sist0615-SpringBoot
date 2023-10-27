@@ -1,0 +1,17 @@
+package date.model.cine;
+
+import javax.persistence.Entity;
+
+import lombok.Data;
+
+@Entity
+@Table(name=cine)
+@Data
+public class MovieDto {
+	private String mv_num;
+	private String mv_title;
+	private String mv_poster;
+	private String mv_director;
+	private String mv_opendate;
+
+}

@@ -1,0 +1,13 @@
+package boot.mvc.sist;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SprigBotMybatis4Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SprigBotMybatis4Application.class, args);
+	}
+
+}

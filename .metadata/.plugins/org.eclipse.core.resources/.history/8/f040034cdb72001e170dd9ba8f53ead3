@@ -1,0 +1,12 @@
+package boot.data.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import boot.data.dto.IpgoDto;
+
+@Mapper
+public interface IpgoMapperInter {
+
+	public int getTotalCount();
+	public void insertIpgo(IpgoDto dto);
+}

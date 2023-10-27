@@ -1,0 +1,5 @@
+package date.model.cine;
+
+public class MovieDao {
+
+}

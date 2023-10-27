@@ -1,0 +1,24 @@
+#tomcat port
+server:
+  port: 9009
+#jsp
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/ipgo/
+      suffix: .jsp
+  devtools:
+    livereload:
+      enabled: true
+#mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/coffee?serverTimezone=Asia/Seoul
+    username: ssung2sin
+    password: a1234
+#mybatis
+mybatis:
+#*에 dto,data.model.mapper 해도된다!
+  type-aliases-package: data.model.*
+  mapper-locations:
+  - /mapper/**/*.xml

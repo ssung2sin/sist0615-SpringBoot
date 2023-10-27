@@ -1,0 +1,20 @@
+server:
+  port: 9005
+spring:
+  mvc:
+    view:
+    #jsp setting
+      suffix: .jsp
+      prefix: /WEB-INF/
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/coffee?serverTimezone=Asia/Seoul
+    username: ssung2sin
+    password: a1234
+  jpa:
+    hibernate:
+      #스키마생성 create:기존테이블을 삭제후 생성,update:변경된부분만 반영
+      ddl-auto: update
+      #ddl생성시 데이터베이스의 고유기능 사용할지
+    generate-ddl: true
+    

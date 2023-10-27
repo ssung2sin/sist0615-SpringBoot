@@ -1,0 +1,29 @@
+package my.info;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class InfoController {
+	
+	@GetMapping("/my/info")
+	public List<Map<String, String>> info(){
+		
+		List<Map<String, String>> list=new ArrayList<>();
+		
+		Map<String,String> map=new HashMap<>();
+		
+		map.put("name", "이성신");
+		map.put("age", "28");
+		map.put("addr", "경기도시흥시");
+		
+		list.add(map);
+		
+		return list;
+	}
+}
