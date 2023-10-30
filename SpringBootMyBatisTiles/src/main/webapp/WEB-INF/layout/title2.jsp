@@ -19,6 +19,6 @@
 <body>
 	<c:set var="root" value="<%=request.getContextPath() %>"/>
 	<a href="${root }"><img src="${root }/image/title.jpg" style="width: 1000px; height: 600px;"></a>
-	<b>SpringBoot+Mybatis+Tiles</b>
+	<b>SpringBoot+Mybatis+Tiles+타이틀2!</b>
 </body>
 </html>

@@ -1,7 +1,0 @@
-server.port=9002
-#mysql setting
-spring.datasource.driver-class-name=
-spring.database.url=
-spring.datasource.username=
-spring.datasource.passsword=
-

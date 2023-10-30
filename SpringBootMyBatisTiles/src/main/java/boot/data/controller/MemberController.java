@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -90,5 +91,46 @@ public class MemberController {
 		service.insertMember(dto);
 		
 		return "redirect:list";
+	}
+	
+	//삭제는 ajax
+	@GetMapping("/member/delete")
+	@ResponseBody
+	public void deleteMember(@RequestParam String num,
+			HttpSession session) {
+		String path=session.getServletContext().getRealPath("/membersave");
+		//System.out.println(num);
+		String photoName=service.getDataByNum(num).getPhoto();
+		//System.out.println(photoName);
+		File file=new File(path+"\\"+photoName);
+		file.delete();
+		service.deleteMember(num);
+	}
+	
+	@PostMapping("/member/updatephoto")
+	@ResponseBody
+	public void photoupload(@RequestParam String num,
+			MultipartFile photo,HttpSession session) {
+		String path=session.getServletContext().getRealPath("/membersave");
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+		String fileName=sdf.format(new Date())+"_"+photo.getOriginalFilename();
+		
+		String photoName=service.getDataByNum(num).getPhoto();
+		//System.out.println(photoName);
+		File file=new File(path+"\\"+photoName);
+		file.delete();
+		
+		//업로드
+		try {
+			photo.transferTo(new File(path+"\\"+fileName));
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		session.setAttribute("loginphoto", fileName);
+		service.updatePhoto(num, fileName);
 	}
 }

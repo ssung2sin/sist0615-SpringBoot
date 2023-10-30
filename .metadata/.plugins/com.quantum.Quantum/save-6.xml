@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<SAVED_DATA>
+	<bookmarks>
+		<jdbcDriver className="com.mysql.cj.jdbc.Driver" name="MySQL Connector/J" type="MYSQL" version="mysql-connector-j-8.1.0 (Revision: 7b6f9a337afe6ccb41823df485bf848ca7952b09)">
+			<jar fileName="C:\Sist0615\Util\mysql-connector-j-8.1.0.jar" />
+		</jdbcDriver>
+		<jdbcDriver className="org.apache.derby.jdbc.EmbeddedDriver" name="org.apache.derby.jdbc.EmbeddedDriver" type="DERBY" version="">
+			<jar fileName="C:/Sist0615/Util/sts-4.20.0.RELEASE/plugins/com.quantum.derby_3.3.10/lib/derby.jar" />
+		</jdbcDriver>
+		<bookmark>
+			<name>(Internal) Derby</name>
+			<username>QUANTUM</username>
+			<password />
+			<prompt>false</prompt>
+			<connect>jdbc:derby:C:/Sist0615/Util/sts-4.20.0.RELEASE/plugins/com.quantum.derby_3.3.10/data/quantum</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>true</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>org.apache.derby.jdbc.EmbeddedDriver</driver>
+			<type>DERBY</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:/Sist0615/Util/sts-4.20.0.RELEASE/plugins/com.quantum.derby_3.3.10/lib/derby.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList />
+		</bookmark>
+		<bookmark>
+			<name>mysql</name>
+			<username>ssung2sin</username>
+			<password>a1234</password>
+			<prompt>false</prompt>
+			<connect>jdbc:mysql://localhost:3306/coffee?serverTimezone=Asia/Seoul</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>com.mysql.cj.jdbc.Driver</driver>
+			<type>MYSQL</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\Sist0615\Util\mysql-connector-j-8.1.0.jar</driverLocation>
+			<Other_Schemas schemaRule="useSelected">
+				<schema>coffee</schema>
+			</Other_Schemas>
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>delete from mycar</queryString>
+				</query>
+				<query>
+					<queryString>update hibernate_sequence set next_val=1</queryString>
+				</query>
+				<query>
+					<queryString>delete from market</queryString>
+				</query>
+				<query>
+					<queryString>DELETE FROM market WHERE (num = 7)</queryString>
+				</query>
+				<query>
+					<queryString>create table mycine(mv_num smallint auto_increment primary key,
+mv_title varchar(300),mv_poster varchar(200),
+mv_director varchar(50),mv_opendate varchar(100))</queryString>
+				</query>
+				<query>
+					<queryString>UPDATE mycine SET mv_poster = 'Decision_to_Leave.jpg' WHERE (mv_num = 6) AND (mv_poster = '20231024122217Decision_to_Leave.jpg')</queryString>
+				</query>
+				<query>
+					<queryString>UPDATE mycine SET mv_poster = 'Intimate_STrangers.jpg' WHERE (mv_num = 7) AND (mv_poster = '20231024122353Intimate_STrangers.jpg')</queryString>
+				</query>
+				<query>
+					<queryString>UPDATE mycine SET mv_poster = 'Elemental.jpg' WHERE (mv_num = 8) AND (mv_poster = '20231024123942Elemental.jpg')</queryString>
+				</query>
+				<query>
+					<queryString>delete from mycine</queryString>
+				</query>
+				<query>
+					<queryString>UPDATE mycine SET mv_title = '엘리멘탈' WHERE (mv_num = 10) AND (mv_title = '엘리멘')</queryString>
+				</query>
+				<query>
+					<queryString>DELETE FROM mycine WHERE (mv_num = 13)</queryString>
+				</query>
+				<query>
+					<queryString>create table bootmember(num smallint auto_increment primary key,
+name varchar(20),id varchar(20), pass varchar(30),
+photo varchar(200),addr varchar(50), email varchar(50),
+gaipday datetime)</queryString>
+				</query>
+				<query>
+					<queryString>drop table bootmember</queryString>
+				</query>
+				<query>
+					<queryString>create table bootmember(num smallint auto_increment primary key,
+name varchar(20),id varchar(20), pass varchar(30),
+photo varchar(200),hp varchar(20),
+addr varchar(50), email varchar(50),
+gaipday datetime)</queryString>
+				</query>
+				<query>
+					<queryString>insert into bootmember values(null,'이수연','angel','1234','b8.png','010-111-1111','제주시 서귀포구','angel@sist.com',now())</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from bootmember where id='angel'</queryString>
+				</query>
+				<query>
+					<queryString>DELETE FROM bootmember WHERE (num = 2)</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+	</bookmarks>
+</SAVED_DATA>

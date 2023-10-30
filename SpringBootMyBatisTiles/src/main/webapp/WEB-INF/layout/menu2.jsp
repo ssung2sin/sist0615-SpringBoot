@@ -29,7 +29,7 @@
 		margin-right: 10px;
 		font-size: 24px;
 		font-family: 'Gaegu';
-		background-color: #ffc;
+		background-color: beige;
 		cursor: pointer;
 	}
 	ul.menu li a{

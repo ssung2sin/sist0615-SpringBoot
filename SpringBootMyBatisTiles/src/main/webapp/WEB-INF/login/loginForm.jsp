@@ -17,19 +17,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="login" method="post" style="margin: 100px 100px;">
+<form action="loginprocess" method="post" style="margin: 100px 100px;">
 	<table class="table table-bordered" style="width: 300px;">
 		<tr>
 			<th width="80">아이디</th>
-			<th><input type="text" class="form-control" name="id"></th>
+			<th><input type="text" class="form-control" name="id" required="required" autofocus="autofocus"
+			placeholder="아이디" value="${sessionScope.saveok==null?'':sessionScope.myid }"></th>
 		</tr>
 		<tr>
-			<th width="80">아이디</th>
-			<th><input type="text" class="form-control" name="id"></th>
+			<th width="80">비밀번호</th>
+			<th><input type="password" class="form-control" name="pass" placeholder="비밀번호"></th>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="checkbox" name="savechk">아이디저장
+				<input type="checkbox" name="savechk" ${sessionScope.saveok==null?'':'checked' }>아이디저장
 			</td>
 		</tr>
 		<tr>

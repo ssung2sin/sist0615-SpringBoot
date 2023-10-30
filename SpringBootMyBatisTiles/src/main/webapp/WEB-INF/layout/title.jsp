@@ -15,5 +15,13 @@
 <body>
 <a href="/"><img alt="" src="${root }/image/sub.jpg" style="width: 200px;">
 <b>SpringBoot+Mybatis_Tiles</b></a>
+<c:if test="${sessionScope.loginok==null }">
+	<button type="button" class="btn btn-outline-success"
+	onclick="location.href='${root}/login/main'">로그인</button>
+</c:if>
+<c:if test="${sessionScope.loginok!=null }">
+	<button type="button" class="btn btn-outline-danger"
+	onclick="location.href='${root}/login/logoutprocess'">로그아웃</button>
+</c:if>
 </body>
 </html>
