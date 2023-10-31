@@ -54,6 +54,7 @@ public class LoginController {
 			
 			MemberDto mdto=service.getDataById(id);
 			session.setAttribute("loginphoto", mdto.getPhoto());
+			session.setAttribute("loginname", mdto.getName());
 			
 			return "redirect:main";
 		}
@@ -65,6 +66,7 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginok");
 		session.removeAttribute("loginphoto");
+		session.removeAttribute("loginame");
 		
 		return "redirect:main";
 	}

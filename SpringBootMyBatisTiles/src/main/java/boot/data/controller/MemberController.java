@@ -133,4 +133,37 @@ public class MemberController {
 		session.setAttribute("loginphoto", fileName);
 		service.updatePhoto(num, fileName);
 	}
+	
+	@GetMapping("/member/deletemyinfo")
+	@ResponseBody
+	public void deleteMyInfo(@RequestParam String num,HttpSession session) {
+		
+		String path=session.getServletContext().getRealPath("/membersave");
+		String photoName=service.getDataByNum(num).getPhoto();
+		File file=new File(path+"\\"+photoName);
+		file.delete();
+		
+		service.deleteMember(num);
+		
+		session.removeAttribute("loginok");
+		session.removeAttribute("myid");
+		session.removeAttribute("saveok");
+		session.removeAttribute("loginphoto");
+	}
+	
+	@PostMapping("/member/updateinfo")
+	@ResponseBody
+	public Map<String, String>updateMyInfo(@RequestParam Map<String, String>map){
+		
+		MemberDto mdto=new MemberDto();
+		mdto.setAddr(map.get("addr"));
+		mdto.setEmail(map.get("email"));
+		mdto.setName(map.get("name"));
+		mdto.setHp(map.get("hp"));
+		mdto.setNum(map.get("num"));
+		service.updateMember(mdto);
+		
+		
+		return map;
+	}
 }

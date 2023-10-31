@@ -1,0 +1,49 @@
+package boot.data.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import boot.data.service.MemberService;
+
+@RestController
+public class RestLoginController {
+
+	@Autowired
+	MemberService service;
+
+	@PostMapping("/member/login")
+	public Map<String, String> loginProcess(@RequestParam String id, @RequestParam String pass,
+			@RequestParam(required = false) String savechk, HttpSession session) {
+
+		Map<String, String> map = new HashMap<>();
+		int result = service.loginPassCheck(id, pass);
+		if (result == 1) {
+			session.setMaxInactiveInterval(60 * 60 * 8);
+			session.setAttribute("loginok", "yes");
+			session.setAttribute("myid", id);
+			session.setAttribute("loginphoto", service.getDataById(id).getPhoto());
+			session.setAttribute("loginname", service.getDataById(id).getName());
+			if (savechk != null) {
+				session.setAttribute("saveok", "yes");
+			}
+		}
+
+		map.put("result", result == 1 ? "success" : "fail");
+		return map;
+	}
+	@GetMapping("/member/logout") 
+	public void logout(HttpSession session) {
+		session.removeAttribute("loginok");
+		session.removeAttribute("loginphoto");
+		session.removeAttribute("loginame");
+	}
+	
+}

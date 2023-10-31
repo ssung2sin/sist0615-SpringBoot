@@ -47,35 +47,86 @@ td {
 				}
 			});
 		})
+		
+		$(".infoDel").click(function(){
+			var num=$(this).attr("num");
+			
+			$.ajax({
+				type:"get",
+				url:"deletemyinfo",
+				dataType:"html",
+				data:{"num":num},
+				success:function(){
+					alert("삭제되었습니다.");
+					location.href="/";
+				}
+			});
+			
+		});
+		
+		$(".myinfoMod").click(function(){
+			var name=$(".modName").text();
+			var hp=$(".modHp").text();
+			var addr=$(".modAddr").text();
+			//alert(addr);
+			var email=$(".modEmail").text();
+			$(".modName").html("<input type='text' value='"+name+"' class='form-control modName2' style='width:200px;'>");
+			$(".modHp").html("<input type='text' value='"+hp+"' class='form-control modHp2' style='width:200px;'>");
+			$(".modAddr").html("<input type='text' value='"+addr+"' class='form-control modAddr2' style='width:200px;'>");
+			$(".modEmail").html("<input type='text' value='"+email+"' class='form-control modEmail2' style='width:200px;'>");
+			$(".clickMod").html("<button type='button' class='btn btn-outline-warning' name='modButton'>수정완료</button>");
+		});
+		$(document).on("click","button[name='modButton']",function(){
+			var name=$(".modName2").val();
+			var hp=$(".modHp2").val();
+			var addr=$(".modAddr2").val();
+			var email=$(".modEmail2").val();
+			var num=$("#numberValue").val();
+			//alert(id);
+			$.ajax({
+				type:"post",
+				url:"updateinfo",
+				dataType:"json",
+				data:{"name":name,"hp":hp,"addr":addr,"email":email,"num":num},
+				success:function(data){
+					$(".modName").html(data.name);
+					$(".modHp").html(data.hp);
+					$(".modAddr").html(data.addr);
+					$(".modEmail").html(data.email);
+				}
+			});
+		})
 	})
 </script>
 </head>
 <body>
-	<table class="table table-bordered" style="width: 700px;">
+	<table class="table table-bordered" style="width: 750px;">
 		<c:forEach var="dto" items="${list }">
 			<c:if test="${sessionScope.loginok!=null and sessionScope.myid==dto.id }">
 				<tr>
 					<td rowspan="6" align="center"><img alt="" src="../membersave/${dto.photo }"
 						style="width: 300px;"><br>
+						<input type="hidden" value="${dto.num }" id="numberValue">
 						<input type="file" class="photoUpload" num="${dto.num }" style="display: none;">
 						<button type="button" class="btn btn-outline-warning photoUpdate">사진수정</button></td>
-					<td width="330">이름: ${dto.name }</td>
-					<td rowspan="6" style="width: 70px;" valign="middle">
-						<button type="button" class="btn btn-outline-warning">수정</button>
-						<button type="button" class="btn btn-outline-danger">삭제</button>
+					<td width="330" class="name d-inline-flex" name="${dto.name }">이름: <span class="modName">${dto.name }</span></td>
+					<td rowspan="6" style="width: 150px;" valign="middle" class="clickMod">
+						<button type="button" class="btn btn-outline-warning myinfoMod">수정</button>
+						<button type="button" class="btn btn-outline-danger infoDel"
+						num="${dto.num }">삭제</button>
 					</td>
 				</tr>
 				<tr>
-					<td width="330">id: ${dto.id }</td>
+					<td width="330" class="id d-inline-flex">id: ${dto.id }</td>
 				</tr>
 				<tr>
-					<td width="330">번호: ${dto.hp }</td>
+					<td width="330" class="hp d-inline-flex">번호: <span class="modHp">${dto.hp }</span></td>
 				</tr>
 				<tr>
-					<td width="330">주소: ${dto.addr }</td>
+					<td width="330" chass="addr d-inline-flex">주소: <span class="modAddr">${dto.addr }</span></td>
 				</tr>
 				<tr>
-					<td width="330">이메일: ${dto.email }</td>
+					<td width="330" class="email d-inline-flex">이메일: <span class="modEmail">${dto.email }</span></td>
 				</tr>
 				<tr>
 					<td width="330">가입일: <fmt:formatDate value="${dto.gaipday }"

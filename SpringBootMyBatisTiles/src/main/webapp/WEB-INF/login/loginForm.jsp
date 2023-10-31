@@ -35,9 +35,9 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
+				<button type="submit" class="btn btn-outline-primary">로그인</button>
 				<button type="button" class="btn btn-outline-info"
 				onclick="location.href='/member/form'">회원가입</button>
-				<button type="submit" class="btn btn-outline-primary">로그인</button>
 			</td>
 		</tr>
 	</table>
