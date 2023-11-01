@@ -1,0 +1,13 @@
+package boot.data.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import boot.data.mapper.MemberMapperInter;
+
+@Service
+public class MemBoardService implements MemBoardServiceInter{
+
+	@Autowired
+	MemberMapperInter mapperInter;
+}

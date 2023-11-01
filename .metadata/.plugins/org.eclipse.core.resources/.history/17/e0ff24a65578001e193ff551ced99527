@@ -1,0 +1,10 @@
+package boot.data.service;
+
+import boot.data.dto.MemBoardDto;
+
+public interface MemBoardServiceInter {
+	
+	public int getTotalCount();
+	public void insertMemBoard(MemBoardDto dto);
+
+}

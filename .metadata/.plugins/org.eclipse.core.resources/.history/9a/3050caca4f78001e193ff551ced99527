@@ -1,0 +1,15 @@
+package boot.data.dto;
+
+import org.apache.ibatis.type.Alias;
+
+import lombok.Data;
+
+@Data
+@Alias("memboardDto")
+public class MemBoardDto {
+	private String num;
+	private String myid;
+	private String subject;
+	private String content;
+	private String uploadfile;
+}

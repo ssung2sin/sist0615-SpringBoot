@@ -1,0 +1,12 @@
+package boot.data.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import boot.data.dto.MemBoardDto;
+
+@Mapper
+public interface MemBoardMapperInter {
+	
+	public int getTotalCount();
+	public void insertMemBoard(MemBoardDto dto);
+}

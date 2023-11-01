@@ -1,0 +1,54 @@
+package boot.data.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import boot.data.dto.MemBoardDto;
+import boot.data.service.MemBoardService;
+import boot.data.service.MemberService;
+
+@Controller
+@RequestMapping("/memboard")
+public class MemBoardController {
+	
+	@Autowired
+	MemBoardService service;
+	
+	@GetMapping("/list")
+	public String list(Model model) {
+		
+		int totalCount=service.getTotalCount();
+		
+		model.addAttribute("totalCount", totalCount);
+		
+		return "/memboard/memList";
+	}
+	
+	@GetMapping("/form")
+	public String form() {
+		
+		return "/memboard/addForm";
+	}
+	
+	@PostMapping("/insert")
+	public String insert(@ModelAttribute MemBoardDto dto,HttpSession session) {
+		
+		service.insertMemBoard(dto);
+		
+		return "";
+	}
+	
+	@GetMapping("/content")
+	public String content(Model model) {
+		
+		return "memboard/content";
+	}
+
+}

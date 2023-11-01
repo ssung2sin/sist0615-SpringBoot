@@ -1,5 +1,0 @@
-package date.model.cine;
-
-public interface MovieDaoInter {
-
-}

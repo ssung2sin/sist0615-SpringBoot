@@ -1,5 +1,0 @@
-package data.model.service;
-
-public class MarketService implements MarketServiceInter {
-
-}

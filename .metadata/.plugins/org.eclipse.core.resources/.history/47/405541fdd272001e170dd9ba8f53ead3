@@ -1,9 +1,0 @@
-package boot.data.dto;
-
-public class IpgoDto {
-	private String num;
-	private String sangpum;
-	private int price;
-	private String photoname;
-	private Timestamp ipgoday;
-}

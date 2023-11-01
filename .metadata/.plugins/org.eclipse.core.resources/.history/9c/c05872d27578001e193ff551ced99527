@@ -1,0 +1,25 @@
+package boot.data.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import boot.data.dto.MemBoardDto;
+import boot.data.service.MemBoardService;
+
+@Controller
+public class ReboardController {
+	
+	@Autowired
+	MemBoardService service;
+
+	@GetMapping("/reboard/list")
+	public String boardlist() {
+		
+		return "/reboard/boardList";
+	}
+}

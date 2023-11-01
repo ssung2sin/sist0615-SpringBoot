@@ -129,8 +129,7 @@ td {
 					<td width="330" class="email d-inline-flex">이메일: <span class="modEmail">${dto.email }</span></td>
 				</tr>
 				<tr>
-					<td width="330">가입일: <fmt:formatDate value="${dto.gaipday }"
-							pattern="yyyy-MM-dd" /></td>
+					<td width="330">가입일: <fmt:formatDate value="${dto.gaipday }" pattern="yyyy-MM-dd" /></td>
 				</tr>
 			</c:if>
 		</c:forEach>
