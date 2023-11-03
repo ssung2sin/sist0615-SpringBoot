@@ -1,0 +1,13 @@
+package boot.data.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import boot.data.dto.MbanswerDto;
+
+@Mapper
+public interface MbAnswerMapperInter {
+	
+	public void insertBbAnswer(@RequestParam MbanswerDto dto);
+	
+}

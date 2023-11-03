@@ -151,4 +151,16 @@ public class MemBoardController {
 		
 		return "redirect:content?num="+service.getMaxNum();
 	}
+	
+	@GetMapping("/delete")
+	public String delete() {
+		
+		return "redirect:list";
+	}
+	
+	@GetMapping("/updateform")
+	public String updateForm(Model model,@RequestParam MemBoardDto dto) {
+		
+		return "/memboard/updateForm";
+	}
 }

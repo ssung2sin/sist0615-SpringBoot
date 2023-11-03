@@ -15,7 +15,7 @@
 		list-style: none;
 	}
 	ul.menu li{
-		width: 110px;
+		width: 90px;
 		float: Left;
 		border: 1px solid gray;
 		height: 60px;
@@ -39,6 +39,9 @@
 	<ul class="menu">
 		<li>
 			<a href="/">Home</a>
+		</li>
+		<li>
+			<a href="${root }/smart/list">스마트샵</a>
 		</li>
 		<li>
 			<a href="${root }/ipgo/ipgoform">상품등록</a>

@@ -1,0 +1,16 @@
+package boot.data.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import boot.data.mapper.MbAnswerMapperInter;
+import boot.data.service.MemberService;
+
+public class MbAnswerController {
+	
+	@Autowired
+	MbAnswerMapperInter mapper;
+	
+	@Autowired
+	MemberService mservice;
+
+}

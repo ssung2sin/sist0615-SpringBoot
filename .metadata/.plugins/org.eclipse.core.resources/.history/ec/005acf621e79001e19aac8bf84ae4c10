@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.data.mapper.MbAnswerMapperInter"> <!-- 무조건 경로로 줘야함!! -->
+	<insert id="insertMbAnswer" parameterType="mbdto">
+		insert into mbanswer (num,name,myid,content,writeday) values(#{num},#{name},#{myid},#{content},now())
+	</insert>
+	<select id="getAllAnswers" parameterType="String" resultType="mbdto">
+		select * from mbanswer where num=#{num}
+	</select>
+	
+	public void insertMbAnswer(@RequestParam MbAnswerDto dto);
+	public List<MbAnswerDto> getAllAnswers(String num);
+	public MbAnswerDto getAnswer(String idx);
+	public void updateMbAnswer(@RequestParam MbAnswerDto dto);
+	public void deleteMbAnswer(@RequestParam String idx);
+</mapper>

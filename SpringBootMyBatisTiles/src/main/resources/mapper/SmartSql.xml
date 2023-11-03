@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.data.mapper.SamrtMapperInter"> <!-- 무조건 경로로 줘야함!! -->
+	<insert id="insertSmartShop" parameterType="sshop">
+		insert into smartshop (sangname,price,color,content,ipgoday) values(#{sangname},#{price},#{color},#{content},#{ipgoday})
+	</insert>
+	<select id="getAllSangpums" parameterType="int" resultType="sshop">
+		select * from smartshop order by num desc
+	</select>
+	<select id="getSmartSangpum" resultType="sshop" parameterType="int">
+		select * from smartshop where num=#{num}
+	</select>
+	<update id="updateSmartShop" parameterType="sshop">
+		update smartshop set sangname=#{sangname},price=#{price},color=#{color},content=#{content} where num=#{num}
+	</update>
+	<delete id="deleteSmartShop" parameterType="int">
+		delete from smartshop where num=#{num}
+	</delete>
+</mapper>

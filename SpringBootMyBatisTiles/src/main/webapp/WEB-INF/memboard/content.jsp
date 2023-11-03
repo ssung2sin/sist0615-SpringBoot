@@ -9,9 +9,130 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gaegu:wght@300&family=Nanum+Pen+Script&family=Sunflower:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+	.amod,.adel{
+	 cursor: pointer;
+	}
+</style>
 </head>
+<script type="text/javascript">
+	$(function(){
+		list();
+		num=$("#num").val();
+		loginok="${sessionScope.loginok}";
+		myid="${sessionScope.myid}";
+		
+		$("#btnAnswerAdd").click(function(){
+			
+			var content=$("#content").val();
+			
+			if(content.length==0){
+				alert("댓글을 입력해 주세요");
+			}
+			//alert(num+","+content);
+			$.ajax({
+				type:"post",
+				url:"/mbanswer/ainsert",
+				dataType:"html",
+				data:{"num":num,"content":content},
+				success:function(){
+					alert("입력되었습니다");
+					$("#content").val("");
+					list();
+				}
+			});
+		})
+		
+		$(document).on("click",".adel",function(){
+			var idx=$(this).attr("idx");
+			var comment=confirm("정말 삭제하시겠습니까?");
+			//alert(comment);
+			if(comment){
+				$.ajax({
+					type:"get",
+					url:"/mbanswer/adelete",
+					dataType:"html",
+					data:{"idx":idx},
+					success:function(){
+						alert("삭제되었습니다.");
+						list();
+					}
+				});  
+			}else{
+				alert("취소하였습니다");
+			}
+		})
+
+		$(document).on("click",".amod",function(){
+			idx=$(this).attr("idx");
+			//alert(idx);
+
+			$.ajax({
+				type: "get",
+				dataType: "json",
+				url: "/mbanswer/adata",
+				data:{"idx":idx},
+				success:function(data){
+					$("#ucontent").val(data.content)
+				}
+			})
+
+			$("#mbUpdateModal").modal("show");
+		})
+
+		$(document).on("click","#btnupdate",function(){
+
+			var content=$("#ucontent").val();
+			//alert(idx+","+content);
+			$.ajax({
+				type: "POST",
+				dataType:"html",
+				url:"/mbanswer/aupdate",
+				data:{"idx":idx,"content":content},
+				success:function(){
+					list();
+					$("#mbUpdateModal").modal("hide");
+				}
+			});
+		});
+
+	})
+	function list(){
+		
+		var num=$("#num").val();
+		var loginok="${sessionScope.loginok}";
+	    var myid="${sessionScope.myid}";
+		//alert(loginok+","+myid);
+		$.ajax({
+			type:"get",
+			url:"/mbanswer/alist",
+			dataType:"json",
+			data:{"num":num},
+			success:function(data){
+				$("span.acount").text(data.length);
+				var s="";
+				$.each(data,function(idx,res){
+
+					s+="<b>"+res.name+"</b>: "+res.content;
+					s+="<span class='day'><small style='color:gray; float:right;'>"+res.writeday+"</small></span><br>";
+					if(loginok!=null&&myid==res.myid){
+						s+="<span style='float:right;'><i class='bi bi-pencil-square amod'idx='"+res.idx+"' style='color:blue'></i>"
+						s+="<i class='bi bi-trash adel' idx='"+res.idx+"' style='color:red'></i></span><br>"
+					}
+					s+="<hr>"
+					if(loginok==''){
+						
+					}
+					//alert(res.name);
+				})
+				$(".alist").html(s);
+			}
+		});
+	}
+</script>
 <body>
 	<div style="margin:50px 150px;">
 		<table class="table table-bordered" style="width: 600px;">
@@ -40,8 +161,29 @@
 					<br>
 					<pre>${dto.content }</pre>
 					<br>
+					<b>댓글: <span class="acount"></span></b>
 				</td>
 			</tr>
+			<!-- 댓글 -->
+			<tr>
+				<td>
+					<div class="alist"></div>
+					
+					<input type="hidden"  id="num" value="${dto.num }">
+					<c:if test="${sessionScope.loginok!=null }">
+						<div class="aform">
+							<div class="d-inline-flex">
+								<input type="text" class="form-control" style="width: 500px;"
+								placeholder="댓글을 입력하세요" id="content">
+								<button type="button" class="btn btn-primary"
+								id="btnAnswerAdd">등록</button>
+							</div>
+						</div>
+					</c:if>
+				</td>
+			</tr>
+			
+			
 			<tr>
 				<td align="center">
 				<c:if test="${sessionScope.loginok!=null }">
@@ -59,6 +201,31 @@
 				</td>
 			</tr>
 		</table>
+	</div>
+	<!-- The Modal -->
+	<div class="modal" id="mbUpdateModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">댓글 수정</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<input type="text" id="ucontent" class="form-control">
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<input type="button" class="btn btn-success" id="btnupdate" value="수정">
+					<button type="button" class="btn btn-danger updateClose" data-bs-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
 	</div>
 </body>
 </html>

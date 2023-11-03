@@ -1,0 +1,38 @@
+package boot.data.controller;
+
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import boot.data.dto.MbAnswerDto;
+import boot.data.dto.MemberDto;
+import boot.data.mapper.MbAnswerMapperInter;
+import boot.data.service.MemberService;
+
+@RestController
+@RequestMapping("/mbanswer")
+public class MbAnswerController {
+	
+	@Autowired
+	MbAnswerMapperInter mapper;
+	
+	@Autowired
+	MemberService mservice;
+	
+	@PostMapping("/ainsert")
+	public void insert(HashMap<String, String>map) {
+		System.out.println(map.get("id"));
+		MbAnswerDto mbDto=new MbAnswerDto();
+		MemberDto memDto= mservice.getDataById(map.get("id"));
+		mbDto.setNum(map.get("num"));
+		mbDto.setMyid(map.get("id"));
+		mbDto.setName(memDto.getName());
+		mbDto.setContent(map.get("content"));
+		
+		mapper.insertMbAnswer(mbDto);
+	}
+
+}
