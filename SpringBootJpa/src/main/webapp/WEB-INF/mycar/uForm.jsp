@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div style="margin: 100px 100px; width: 500px;">
-		<form action="insert" method="post">
+		<form action="update" method="post">
 			<input type="hidden" name="num" value="${dto.num }">
 			<table class="table table-bordered">
 				<tr>
