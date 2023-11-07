@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -138,6 +141,30 @@ public class ReboardController {
         service.insertReboard(dto);
 
         return "redirect:list";
+    }
 
+    @GetMapping("/content")
+    public String detail(@RequestParam int num, @RequestParam(defaultValue = "1") String currentPage,
+                         Model model) {
+
+        //조회수 증가
+        service.updateReadCount(num);
+
+        //dto
+        ReboardDto dto = service.getData(num);
+
+        model.addAttribute("dto", dto);
+        model.addAttribute("currentPage", currentPage);
+
+        return "/reboard/content";
+    }
+
+    @GetMapping("/updatelikes")
+    @ResponseBody
+    public Map<String, Integer> updateLikes(@RequestParam int num) {
+        service.updateLikes(num);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("likes", service.getData(num).getLikes());
+        return map;
     }
 }

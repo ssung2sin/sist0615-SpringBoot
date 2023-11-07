@@ -15,7 +15,7 @@ public interface ReboardServiceInter {
 
     public void updateRestep(int regroup, int restep);
 
-    public void updateReadCount(String num);
+    public void updateReadCount(int num);
 
     public ReboardDto getData(int num);
 
@@ -23,5 +23,5 @@ public interface ReboardServiceInter {
 
     public void deleteReboard(int num);
 
-    public void updateLickes(int num);
+    public void updateLikes(int num);
 }

@@ -17,7 +17,7 @@ public interface ReboardMapperInter {
 
     public void updateRestep(Map<String, Integer> map);
 
-    public void updateReadCount(String num);
+    public void updateReadCount(int num);
 
     public ReboardDto getData(int num);
 
@@ -25,6 +25,6 @@ public interface ReboardMapperInter {
 
     public void deleteReboard(int num);
 
-    public void updateLickes(int num);
+    public void updateLikes(int num);
 
 }

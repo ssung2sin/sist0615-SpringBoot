@@ -76,7 +76,7 @@ public class ReboardService implements ReboardServiceInter {
     }
 
     @Override
-    public void updateReadCount(String num) {
+    public void updateReadCount(int num) {
         mapperInter.updateReadCount(num);
     }
 
@@ -96,7 +96,7 @@ public class ReboardService implements ReboardServiceInter {
     }
 
     @Override
-    public void updateLickes(int num) {
-        mapperInter.updateLickes(num);
+    public void updateLikes(int num) {
+        mapperInter.updateLikes(num);
     }
 }
